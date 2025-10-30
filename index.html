@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share Canvas Image on WhatsApp</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Share Canvas Image on WhatsApp</h1>
+        
+        <!-- Info Card -->
+        <div class="info-card">
+            <p><strong>📱 Mobile:</strong> Direct sharing via Web Share API (no uploads!)</p>
+            <p><strong>💻 Desktop:</strong> Copy to clipboard or download</p>
+        </div>
+        
+        <!-- The content div that will be converted to canvas -->
+        <div id="content-to-share" class="content-box">
+            <div class="header">
+                <h2>🎨 My Awesome Content</h2>
+            </div>
+            <div class="body">
+                <p>This is a placeholder div with some content!</p>
+                <div class="feature-grid">
+                    <div class="feature-item">✨ Feature 1</div>
+                    <div class="feature-item">🚀 Feature 2</div>
+                    <div class="feature-item">💡 Feature 3</div>
+                    <div class="feature-item">🎯 Feature 4</div>
+                </div>
+                <p class="timestamp">Generated on: <span id="timestamp"></span></p>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls">
+            <button id="share-whatsapp-btn" class="btn btn-whatsapp">
+                <span class="icon">📱</span>
+                Share on WhatsApp
+            </button>
+            <button id="copy-clipboard-btn" class="btn btn-secondary">
+                <span class="icon">📋</span>
+                Copy & Share
+            </button>
+            <button id="preview-btn" class="btn btn-secondary">
+                <span class="icon">👁️</span>
+                Preview Image
+            </button>
+            <button id="customize-btn" class="btn btn-secondary">
+                <span class="icon">🎨</span>
+                Customize Content
+            </button>
+        </div>
+
+        <!-- Preview Modal -->
+        <div id="preview-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Image Preview</h2>
+                <div id="preview-container"></div>
+                <div class="modal-actions">
+                    <button id="download-btn" class="btn btn-primary">Download Image</button>
+                    <button id="modal-share-btn" class="btn btn-whatsapp">Share on WhatsApp</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Indicator -->
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p>Generating image...</p>
+        </div>
+
+        <!-- Status Message -->
+        <div id="status-message" class="status-message"></div>
+    </div>
+
+    <!-- Include html-to-image library from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.min.js"></script>
+    
+    <!-- Include our custom script -->
+    <script src="script.js"></script>
+</body>
+</html>
