@@ -18,23 +18,42 @@ A modern web application that allows users to convert a beautifully styled div i
 
 ## How It Works
 
-### Method 1: Direct Sharing (Mobile - Recommended)
-1. **Content Rendering**: The application displays a styled div with customizable content
-2. **Image Generation**: The div is converted to a canvas and then to a PNG blob
-3. **Web Share API**: Uses the native Web Share API to directly share the image file
-4. **User Selects WhatsApp**: User chooses WhatsApp from the native share dialog
-5. **Direct Share**: Image is shared directly without any upload or temporary links!
+### 🎯 Understanding WhatsApp Sharing Limitations
 
-### Method 2: Copy to Clipboard (Desktop)
-1. **Image Generation**: Creates a PNG image from the div
-2. **Clipboard**: Copies the image directly to your clipboard
-3. **WhatsApp Web Opens**: Automatically opens WhatsApp Web
-4. **Paste & Send**: You can paste (Cmd/Ctrl + V) the image in any chat
+**Important:** WhatsApp does NOT support receiving images directly through web share APIs or URL schemes. The image must be either:
+- In the device's file system (downloaded)
+- In the clipboard (copied)
+- Already attached in the app
 
-### Method 3: Download & Manual Share (Fallback)
-1. **Image Download**: Downloads the image to your device
-2. **WhatsApp Opens**: Opens WhatsApp
-3. **Manual Upload**: User manually attaches and shares the downloaded image
+This is a WhatsApp limitation, not a browser limitation.
+
+### Method 1: Share to WhatsApp Button
+
+#### On Mobile:
+1. **Image Generation**: Div is converted to PNG
+2. **Auto Download**: Image downloads to your device
+3. **WhatsApp Opens**: WhatsApp app opens automatically
+4. **Manual Attach**: You attach the downloaded image from your gallery/files
+
+#### On Desktop:
+1. **Image Generation**: Div is converted to PNG
+2. **Copy to Clipboard**: Image copied automatically
+3. **WhatsApp Web Opens**: Opens in new tab
+4. **Paste**: Press Cmd/Ctrl + V to paste the image
+
+### Method 2: Share Anywhere Button (Web Share API)
+1. **Image Generation**: Creates a PNG blob
+2. **Native Share Dialog**: Opens system share sheet
+3. **Choose App**: Select any app that supports images
+4. **Direct Share**: Image is shared to selected app
+
+**Note:** WhatsApp may not appear in this dialog on all devices due to WhatsApp's own limitations.
+
+### Method 3: Copy Image Button (Desktop)
+1. **Image Generation**: Creates PNG in memory
+2. **Clipboard Copy**: Image copied to clipboard
+3. **WhatsApp Web Opens**: Opens automatically
+4. **Paste Anywhere**: Use Cmd/Ctrl + V in any chat
 
 ## Technologies Used
 

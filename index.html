@@ -12,8 +12,9 @@
         
         <!-- Info Card -->
         <div class="info-card">
-            <p><strong>📱 Mobile:</strong> Direct sharing via Web Share API (no uploads!)</p>
-            <p><strong>💻 Desktop:</strong> Copy to clipboard or download</p>
+            <p><strong>📱 Share to WhatsApp:</strong> Download + open WhatsApp app (mobile) or copy to clipboard (desktop)</p>
+            <p><strong>📤 Share Anywhere:</strong> Use system share dialog (works with all apps)</p>
+            <p><strong>� Tip:</strong> On mobile, use "Share Anywhere" to see all app options!</p>
         </div>
         
         <!-- The content div that will be converted to canvas -->
@@ -37,19 +38,23 @@
         <div class="controls">
             <button id="share-whatsapp-btn" class="btn btn-whatsapp">
                 <span class="icon">📱</span>
-                Share on WhatsApp
+                Share to WhatsApp
+            </button>
+            <button id="share-general-btn" class="btn btn-primary">
+                <span class="icon">📤</span>
+                Share Anywhere
             </button>
             <button id="copy-clipboard-btn" class="btn btn-secondary">
                 <span class="icon">📋</span>
-                Copy & Share
+                Copy Image
             </button>
             <button id="preview-btn" class="btn btn-secondary">
                 <span class="icon">👁️</span>
-                Preview Image
+                Preview
             </button>
             <button id="customize-btn" class="btn btn-secondary">
                 <span class="icon">🎨</span>
-                Customize Content
+                Customize
             </button>
         </div>
 

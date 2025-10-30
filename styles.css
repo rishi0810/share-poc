@@ -115,10 +115,12 @@ h1 {
 
 /* Controls */
 .controls {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 15px;
     justify-content: center;
-    flex-wrap: wrap;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 .btn {
@@ -163,12 +165,12 @@ h1 {
 }
 
 .btn-primary {
-    background: #667eea;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
 }
 
 .btn-primary:hover {
-    background: #5568d3;
+    background: linear-gradient(135deg, #5568d3 0%, #653a91 100%);
 }
 
 .btn .icon {
@@ -338,12 +340,16 @@ h1 {
     }
 
     .controls {
-        flex-direction: column;
+        grid-template-columns: 1fr;
     }
 
     .btn {
         width: 100%;
         justify-content: center;
+    }
+    
+    .info-card p {
+        font-size: 0.85rem;
     }
 
     .modal-content {
