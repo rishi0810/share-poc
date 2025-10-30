@@ -207,79 +207,48 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Share on WhatsApp
-    async function shareOnWhatsApp() {
-        try {
-            updateTimestamp(); // Update timestamp before generating
-            
-            // Generate image blob
-            if (!currentImageBlob) {
-                currentImageBlob = await convertToBlob();
-            }
-            
-            if (!currentImageDataUrl) {
-                currentImageDataUrl = await convertToDataUrl();
-            }
-            
-            hideLoading();
-            
-            // On mobile devices, use WhatsApp URL scheme
-            if (isMobileDevice()) {
-                console.log('Mobile device detected - using WhatsApp scheme');
-                shareViaWhatsAppScheme(currentImageBlob);
-            } 
-            // On desktop with Web Share API support
-            else if (isWebShareSupported()) {
-                console.log('Desktop with Web Share API - showing options');
-                
-                const choice = confirm(
-                    "📱 Share Image to WhatsApp\n\n" +
-                    "Choose your method:\n" +
-                    "• OK - Use system share (may not show WhatsApp)\n" +
-                    "• Cancel - Copy to clipboard & open WhatsApp Web"
-                );
-                
-                if (choice) {
-                    showLoading();
-                    try {
-                        const shared = await shareWithWebShareAPI(currentImageBlob);
-                        hideLoading();
-                        
-                        if (shared) {
-                            showStatus('Image shared successfully! 🎉', 'success');
-                        }
-                    } catch (shareError) {
-                        hideLoading();
-                        console.warn('Web Share API failed, trying clipboard:', shareError);
-                        await copyImageToClipboard();
-                    }
-                } else {
-                    await copyImageToClipboard();
-                }
-            } 
-            // Desktop without Web Share API
-            else {
-                console.log('Desktop without Web Share API - using clipboard method');
-                
-                const choice = confirm(
-                    "📱 Share Image to WhatsApp\n\n" +
-                    "Choose your method:\n" +
-                    "• OK - Copy to clipboard & open WhatsApp Web\n" +
-                    "• Cancel - Download image manually"
-                );
-                
-                if (choice) {
-                    await copyImageToClipboard();
-                } else {
-                    shareWithWhatsAppLink(currentImageDataUrl);
-                }
-            }
-            
-        } catch (error) {
-            console.error('Error sharing on WhatsApp:', error);
-            showStatus('Failed to share. Please try the preview and download option.', 'error');
+ // REVISED AND IMPROVED FUNCTION
+async function shareOnWhatsApp() {
+    try {
+        updateTimestamp(); // Update timestamp before generating
+
+        // Generate image blob if it doesn't exist
+        if (!currentImageBlob) {
+            currentImageBlob = await convertToBlob();
         }
+
+        hideLoading();
+
+        // On mobile, the Web Share API is the best user experience
+        if (isMobileDevice() && isWebShareSupported()) {
+            console.log('Mobile device: Using Web Share API for the best experience.');
+            
+            try {
+                // Use the existing Web Share function.
+                // We accept that WhatsApp will ignore the text, as this is a WhatsApp limitation.
+                // This is still much smoother than the download-and-attach method.
+                const shared = await shareWithWebShareAPI(currentImageBlob);
+
+                if (shared) {
+                    showStatus('Image shared successfully! 🎉', 'success');
+                }
+            } catch (shareError) {
+                // If Web Share fails for any reason, fall back to the old method
+                console.warn('Web Share API failed, falling back to download method:', shareError);
+                shareViaWhatsAppScheme(currentImageBlob);
+            }
+        } 
+        // For desktop, the copy-to-clipboard method is an excellent solution
+        else {
+            console.log('Desktop: Using copy-to-clipboard method.');
+            await copyImageToClipboard();
+        }
+
+    } catch (error) {
+        console.error('Error sharing on WhatsApp:', error);
+        showStatus('Failed to share. Please try the preview and download option.', 'error');
     }
+}
     
     // Show preview modal
     async function showPreview() {
