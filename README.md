@@ -1,20 +1,20 @@
-# WhatsApp Canvas Image Sharing Project
+# WhatsApp Rich Preview Sharing Demo
 
-A modern web application that allows users to convert a beautifully styled div into an image and share it directly on WhatsApp.
+A demonstration of how to share links on WhatsApp with beautiful rich previews using Open Graph meta tags. This project shows the **correct way** to share images on WhatsApp - not as direct image links, but as webpage links with Open Graph tags.
 
 ## Features
 
-✨ **Canvas Rendering**: Converts any HTML div to a high-quality PNG image using `html-to-image` library
+🏷️ **Open Graph Meta Tags**: Demonstrates proper implementation of OG tags for rich previews
 
-📱 **WhatsApp Integration**: Direct sharing to WhatsApp with automatic image upload
+📱 **WhatsApp Sharing**: Share this page's URL to see rich preview with custom title, description, and image
 
-🎨 **Customizable Content**: Edit the content dynamically before sharing
+🖼️ **Hosted Image**: Uses an externally hosted image (postimg.cc) to show how to link to images
 
-👁️ **Live Preview**: Preview the generated image before sharing
+� **URL Sharing**: Shows the difference between sharing direct image URLs vs page URLs
 
-💾 **Download Option**: Download the generated image to your device
+🎓 **Educational**: Learn how social media platforms create rich previews
 
-🌐 **Responsive Design**: Works perfectly on desktop and mobile devices
+🌐 **Cross-Platform**: Works on WhatsApp, Facebook, Twitter, LinkedIn, and more
 
 ## How It Works
 

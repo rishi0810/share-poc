@@ -3,7 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Share Canvas Image on WhatsApp</title>
+    <title>Share Rich Preview on WhatsApp</title>
+    
+    <!-- Open Graph Meta Tags for Rich Previews -->
+    <meta property="og:title" content="Check out this awesome content!">
+    <meta property="og:description" content="I created this amazing result! Click to see more.">
+    <meta property="og:image" content="https://i.postimg.cc/9fbJXsHY/resumelogo.png">
+    <meta property="og:url" content="https://www.yourgame.com/share.html">
+    <meta property="og:type" content="website">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <!-- Twitter Card Meta Tags (optional, for Twitter sharing) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Check out this awesome content!">
+    <meta name="twitter:description" content="I created this amazing result! Click to see more.">
+    <meta name="twitter:image" content="https://i.postimg.cc/9fbJXsHY/resumelogo.png">
+    
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -12,25 +28,34 @@
         
         <!-- Info Card -->
         <div class="info-card">
-            <p><strong>📱 Share to WhatsApp:</strong> Download + open WhatsApp app (mobile) or copy to clipboard (desktop)</p>
-            <p><strong>📤 Share Anywhere:</strong> Use system share dialog (works with all apps)</p>
-            <p><strong>� Tip:</strong> On mobile, use "Share Anywhere" to see all app options!</p>
+            <p><strong>🎯 This demo shows:</strong> Sharing a text message with a link that displays a rich preview</p>
+            <p><strong>�️ Image URL:</strong> https://i.postimg.cc/9fbJXsHY/resumelogo.png</p>
+            <p><strong>💡 How it works:</strong> WhatsApp reads Open Graph meta tags from THIS page to show rich preview</p>
         </div>
         
-        <!-- The content div that will be converted to canvas -->
+        <!-- The content div showing what will be shared -->
         <div id="content-to-share" class="content-box">
             <div class="header">
-                <h2>🎨 My Awesome Content</h2>
+                <h2>📱 Rich Preview Demo</h2>
             </div>
             <div class="body">
-                <p>This is a placeholder div with some content!</p>
-                <div class="feature-grid">
-                    <div class="feature-item">✨ Feature 1</div>
-                    <div class="feature-item">🚀 Feature 2</div>
-                    <div class="feature-item">💡 Feature 3</div>
-                    <div class="feature-item">🎯 Feature 4</div>
+                <h3>What gets shared:</h3>
+                <div class="share-preview-box">
+                    <p class="share-text"><strong>Message:</strong> Check out this awesome content! 🎨</p>
+                    <p class="share-link"><strong>Link:</strong> <span id="share-url">Loading...</span></p>
                 </div>
-                <p class="timestamp">Generated on: <span id="timestamp"></span></p>
+                
+                <h3>Expected WhatsApp Preview:</h3>
+                <div class="preview-example">
+                    <img src="https://i.postimg.cc/9fbJXsHY/resumelogo.png" alt="Preview Image" class="preview-img">
+                    <div class="preview-text">
+                        <p class="preview-title">Check out this awesome content!</p>
+                        <p class="preview-desc">I created this amazing result! Click to see more.</p>
+                        <p class="preview-url">yourgame.com</p>
+                    </div>
+                </div>
+                
+                <p class="info-text">💡 <strong>How it works:</strong> When you share this page's URL, WhatsApp reads the Open Graph meta tags in the &lt;head&gt; section and displays the image as a rich preview.</p>
             </div>
         </div>
 
@@ -38,52 +63,26 @@
         <div class="controls">
             <button id="share-whatsapp-btn" class="btn btn-whatsapp">
                 <span class="icon">📱</span>
-                Share to WhatsApp
+                Share This Page URL
             </button>
-            <button id="share-general-btn" class="btn btn-primary">
-                <span class="icon">📤</span>
-                Share Anywhere
+            <button id="copy-url-btn" class="btn btn-primary">
+                <span class="icon">�</span>
+                Copy Page URL
             </button>
-            <button id="copy-clipboard-btn" class="btn btn-secondary">
-                <span class="icon">📋</span>
-                Copy Image
+            <button id="view-meta-btn" class="btn btn-secondary">
+                <span class="icon">🏷️</span>
+                View Meta Tags
             </button>
-            <button id="preview-btn" class="btn btn-secondary">
-                <span class="icon">👁️</span>
-                Preview
+            <button id="test-image-btn" class="btn btn-secondary">
+                <span class="icon">🖼️</span>
+                Test Image Link
             </button>
-            <button id="customize-btn" class="btn btn-secondary">
-                <span class="icon">🎨</span>
-                Customize
-            </button>
-        </div>
-
-        <!-- Preview Modal -->
-        <div id="preview-modal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2>Image Preview</h2>
-                <div id="preview-container"></div>
-                <div class="modal-actions">
-                    <button id="download-btn" class="btn btn-primary">Download Image</button>
-                    <button id="modal-share-btn" class="btn btn-whatsapp">Share on WhatsApp</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Loading Indicator -->
-        <div id="loading" class="loading">
-            <div class="spinner"></div>
-            <p>Generating image...</p>
         </div>
 
         <!-- Status Message -->
         <div id="status-message" class="status-message"></div>
     </div>
 
-    <!-- Include html-to-image library from CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.min.js"></script>
-    
     <!-- Include our custom script -->
     <script src="script.js"></script>
 </body>
